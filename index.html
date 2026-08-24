@@ -547,53 +547,187 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 @keyframes pulseCount { 0% { transform: scale(0.85); opacity: 0.6; } 100% { transform: scale(1.15); opacity: 1; } }
 
 /* ===== SECTION 6: OUR FUTURE CARDS ===== */
+/* ===== SECTION 6: OUR FUTURE & FINAL EMOTIONAL EXPERIENCE ===== */
 .future-screen {
-  background: #fff0f3;
+  background: linear-gradient(180deg, #fff0f3 0%, #ffdfe7 50%, #ffd0dc 100%);
   padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
 }
-.future-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(44px, 8vw, 76px);
-  color: #8d2348;
-  margin-bottom: 40px;
+.future-container {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
 }
-.future-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
-  max-width: 900px;
-  margin: 0 auto 40px auto;
+
+.future-seq-item {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto 35px auto;
+  box-sizing: border-box;
 }
-.future-card {
-  background: white;
-  border-radius: 20px;
-  padding: 30px 20px;
-  box-shadow: 0 10px 30px rgba(167, 37, 81, 0.1);
-  text-align: center;
-  transition: all 0.35s ease;
-  border: 1px solid rgba(255, 182, 193, 0.3);
-  cursor: pointer;
+.future-seq-item.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-.future-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 18px 40px rgba(167, 37, 81, 0.2);
-  border-color: #f45d88;
-}
-.future-icon {
-  font-size: 48px;
-  margin-bottom: 14px;
-}
-.future-text {
+
+.future-sub-line {
   font-family: 'Outfit', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #6b2639;
+  font-size: clamp(20px, 3.8vw, 28px);
+  color: #8d2348;
+  font-weight: 500;
+  margin-top: 10px;
 }
-.future-bottom-text {
+
+.future-moment-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 182, 193, 0.4);
+  border-radius: 22px;
+  padding: 35px 25px;
+  box-shadow: 0 12px 35px rgba(167, 37, 81, 0.1);
+  text-align: center;
+}
+.future-moment-title {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(22px, 4vw, 32px);
+  color: #8d2348;
+  margin: 12px 0 8px 0;
+}
+.future-moment-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(16px, 3vw, 20px);
+  color: #5b2634;
+  line-height: 1.7;
+}
+
+/* THROUGH EVERYTHING CARD */
+.through-everything-card {
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.95) 0%, rgba(255, 225, 235, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(244, 93, 136, 0.3);
+  border-radius: 26px;
+  padding: 40px 28px;
+  box-shadow: 0 18px 45px rgba(141, 35, 72, 0.15);
+  text-align: center;
+}
+.through-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 4.5vw, 34px);
+  letter-spacing: 1.5px;
+  color: #8d2348;
+  margin-bottom: 30px;
+}
+.te-line {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(17px, 3.2vw, 22px);
+  color: #5b2634;
+  line-height: 1.8;
+  margin: 12px 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.te-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.te-highlight {
   font-family: 'Pacifico', cursive;
   font-size: clamp(20px, 3.8vw, 28px);
   color: #96254b;
   margin-top: 25px;
+}
+
+/* BUILDING MESSAGE CARD */
+.building-msg-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 35px 25px;
+  box-shadow: 0 12px 35px rgba(167, 37, 81, 0.12);
+  text-align: center;
+}
+.msg-line {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(19px, 3.5vw, 26px);
+  color: #6b2639;
+  margin: 14px 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.msg-line.visible, .msg-heart.visible, .msg-salutation.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.msg-heart {
+  font-size: 32px;
+  margin: 15px 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.msg-salutation {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 6vw, 48px);
+  color: #8d2348;
+  margin-top: 15px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* FINAL SKY CARD */
+.final-sky-card {
+  background: linear-gradient(180deg, #090514 0%, #170b25 50%, #280a2a 100%);
+  border-radius: 28px;
+  padding: 45px 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  color: #ffe5ec;
+  text-align: center;
+  position: relative;
+}
+.final-sky-line {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(18px, 3.5vw, 24px);
+  line-height: 1.8;
+  color: #fff0f5;
+  margin: 14px 0;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.final-sky-line.visible, .final-sky-sig-title.visible, .final-sky-sig-names.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.final-sky-sig-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 6vw, 48px);
+  color: #ff9ebb;
+  margin-top: 25px;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.final-sky-sig-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(38px, 7vw, 56px);
+  color: #ffb8ca;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  text-shadow: 0 0 20px rgba(255, 184, 202, 0.5);
+}
+.start-again-btn {
+  background: linear-gradient(135deg, #f45d88 0%, #d43d68 100%);
+  margin-top: 35px;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.2s ease;
 }
 
 /* ===== FINAL SECTION (STARRY NIGHT SKY LETTER) ===== */
@@ -834,35 +968,12 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
     <button id="finalRevealBtn" class="next-section-btn" style="opacity:0; pointer-events:none;" onclick="startCinematicCountdown()">Unlock Our Future 💍</button>
   </div>
 
-  <!-- SECTION 6: OUR FUTURE CARDS -->
+  <!-- SECTION 6: OUR FUTURE & FINAL EMOTIONAL EXPERIENCE -->
   <div id="exp-future-screen" class="exp-screen future-screen" style="display:none;">
-    <div class="future-title">Our Future ❤️</div>
-
-    <div class="future-cards-grid">
-      <div class="future-card">
-        <div class="future-icon">🏠</div>
-        <div class="future-text">A place we'll call ours</div>
-      </div>
-      <div class="future-card">
-        <div class="future-icon">✈️</div>
-        <div class="future-text">Places we'll go</div>
-      </div>
-      <div class="future-card">
-        <div class="future-icon">🌙</div>
-        <div class="future-text">Late-night conversations</div>
-      </div>
-      <div class="future-card">
-        <div class="future-icon">😂</div>
-        <div class="future-text">Things we'll laugh about</div>
-      </div>
-      <div class="future-card">
-        <div class="future-icon">📸</div>
-        <div class="future-text">Memories we haven't made yet</div>
-      </div>
+    <div class="twinkling-stars" id="futureStarsContainer"></div>
+    <div class="future-container" id="futureContentBox">
+      <!-- Content populated sequentially via startOurFutureSequence() JS -->
     </div>
-
-    <div class="future-bottom-text">The best parts of our story haven't happened yet.</div>
-    <button class="next-section-btn" onclick="startFinalSkySection()">Final Message ❤️</button>
   </div>
 
   <!-- FINAL SECTION: STARRY NIGHT SKY LETTER -->
@@ -1114,45 +1225,169 @@ function startCinematicCountdown() {
       cdDigit.textContent = count;
     } else {
       clearInterval(timer);
-      cdOverlay.classList.remove('active');
-
-      burst();
-      launchCelebrationWithFutureButton();
+      setTimeout(() => {
+        cdOverlay.classList.remove('active');
+        startOurFutureSequence();
+      }, 700);
     }
   }, 1000);
 }
 
-function launchCelebrationWithFutureButton() {
-  launchCelebration();
+function startOurFutureSequence() {
+  goToSection('exp-future-screen');
+  initStars('futureStarsContainer');
 
-  const overlay = document.getElementById('celebration-overlay');
-  if (overlay && !document.getElementById('toFutureBtn')) {
-    const btn = document.createElement('button');
-    btn.id = 'toFutureBtn';
-    btn.className = 'next-section-btn';
-    btn.style.marginTop = '25px';
-    btn.style.zIndex = '10005';
-    btn.textContent = "But our story doesn't end here... ❤️";
-    btn.onclick = function() {
-      closeCelebration();
-      goToSection('exp-future-screen');
-    };
-    overlay.appendChild(btn);
-  }
-}
-
-function startFinalSkySection() {
-  goToSection('exp-final-sky-screen');
-  initStars('finalStarsContainer');
-
-  const box = document.getElementById('finalLetterBox');
+  const box = document.getElementById('futureContentBox');
   if (!box) return;
   box.innerHTML = '';
 
+  // 1. Header
+  const header = document.createElement('div');
+  header.className = 'future-seq-item';
+  header.innerHTML = `
+    <div class="future-title">🌌 OUR FUTURE</div>
+    <div class="future-sub-line">The best parts of our story haven't happened yet.</div>
+  `;
+  box.appendChild(header);
+  setTimeout(() => header.classList.add('visible'), 100);
+
+  // 2. 5 Future Moments
+  const moments = [
+    { icon: '🏠', title: "A Place We'll Call Ours", text: "A little corner of the world that belongs to us." },
+    { icon: '✈️', title: "Places We'll Go", text: "New roads, new places, new adventures — together." },
+    { icon: '🌙', title: "Nights We'll Remember", text: "Late-night conversations, random laughter, and moments only we understand." },
+    { icon: '😂', title: "Things We'll Laugh About", text: "The silly things we'll still laugh about years from now." },
+    { icon: '📸', title: "Memories We Haven't Made Yet", text: "Some of my favorite memories with you haven't happened yet." }
+  ];
+
+  let mIdx = 0;
+  function revealNextMoment() {
+    if (mIdx < moments.length) {
+      const m = moments[mIdx];
+      const card = document.createElement('div');
+      card.className = 'future-moment-card future-seq-item';
+      card.innerHTML = `
+        <div class="future-icon">${m.icon}</div>
+        <div class="future-moment-title">${m.title}</div>
+        <div class="future-moment-text">${m.text}</div>
+      `;
+      box.appendChild(card);
+      setTimeout(() => card.classList.add('visible'), 100);
+
+      mIdx++;
+      setTimeout(revealNextMoment, 2800);
+    } else {
+      setTimeout(revealThroughEverything, 2200);
+    }
+  }
+
+  setTimeout(revealNextMoment, 3000);
+}
+
+function revealThroughEverything() {
+  const box = document.getElementById('futureContentBox');
+  if (!box) return;
+
+  const card = document.createElement('div');
+  card.className = 'through-everything-card future-seq-item';
+  card.innerHTML = `<div class="through-title">🤝 THROUGH EVERYTHING</div><div id="teSentences"></div>`;
+  box.appendChild(card);
+  setTimeout(() => card.classList.add('visible'), 100);
+
+  const sentences = [
+    "I know our future won't always be perfect.",
+    "There will be difficult days.",
+    "We may disagree.",
+    "We may get tired.",
+    "We may face things we never expected.",
+    "But I don't want a perfect life.",
+    "I want a life where, when things get difficult...",
+    "We face them together.",
+    "When one of us falls, the other reaches out.",
+    "When one of us feels lost, the other stays.",
+    "We learn together.",
+    "We grow together.",
+    "We become stronger together.",
+    "Whatever comes our way...",
+    "We'll get through it together. ❤️"
+  ];
+
+  const sentBox = card.querySelector('#teSentences');
+  let sIdx = 0;
+
+  function revealNextSentence() {
+    if (sIdx < sentences.length) {
+      const line = document.createElement('div');
+      line.className = (sIdx === sentences.length - 1) ? 'te-line te-highlight' : 'te-line';
+      line.textContent = sentences[sIdx];
+      sentBox.appendChild(line);
+
+      setTimeout(() => line.classList.add('visible'), 100);
+
+      sIdx++;
+      setTimeout(revealNextSentence, 2200);
+    } else {
+      setTimeout(revealMostEmotionalMessage, 3200);
+    }
+  }
+
+  setTimeout(revealNextSentence, 800);
+}
+
+function revealMostEmotionalMessage() {
+  const box = document.getElementById('futureContentBox');
+  if (!box) return;
+
+  const msgCard = document.createElement('div');
+  msgCard.className = 'building-msg-card future-seq-item';
+  msgCard.innerHTML = `<div id="buildingLines"></div>`;
+  box.appendChild(msgCard);
+  setTimeout(() => msgCard.classList.add('visible'), 100);
+
   const lines = [
-    "This page ends here...",
-    "But our story doesn't. ❤️",
+    "The future isn't something I'm waiting for...",
+    "It's something I want to build with you.",
+    "❤️",
     "Munu,",
+    "Our story is only beginning."
+  ];
+
+  const lineBox = msgCard.querySelector('#buildingLines');
+  let lIdx = 0;
+
+  function revealBuildingLine() {
+    if (lIdx < lines.length) {
+      const line = document.createElement('div');
+      line.className = (lIdx === 2) ? 'msg-heart' : (lIdx === 3 || lIdx === 4 ? 'msg-salutation' : 'msg-line');
+      line.textContent = lines[lIdx];
+      lineBox.appendChild(line);
+
+      setTimeout(() => line.classList.add('visible'), 100);
+
+      lIdx++;
+      setTimeout(revealBuildingLine, 2200);
+    } else {
+      setTimeout(revealFinalSkySection, 3000);
+    }
+  }
+
+  setTimeout(revealBuildingLine, 600);
+}
+
+function revealFinalSkySection() {
+  const box = document.getElementById('futureContentBox');
+  if (!box) return;
+
+  const skyCard = document.createElement('div');
+  skyCard.className = 'final-sky-card future-seq-item';
+  skyCard.innerHTML = `<div id="finalLines"></div>`;
+  box.appendChild(skyCard);
+  setTimeout(() => skyCard.classList.add('visible'), 100);
+
+  const lines = [
+    "I don't know exactly what tomorrow will bring...",
+    "But I know who I want beside me when it comes.",
+    "❤️",
     "If you're ever having a difficult day, come back here.",
     "Take a breath.",
     "Remember that somewhere in this world, there is someone who chose you, and will keep choosing you.",
@@ -1161,23 +1396,48 @@ function startFinalSkySection() {
     "Mijangang ❤️ Munu"
   ];
 
-  let idx = 0;
-  function showNextLine() {
-    if (idx < lines.length) {
-      const p = document.createElement('div');
-      p.className = (idx === lines.length - 1) ? 'final-line final-signature' : 'final-line';
-      p.textContent = lines[idx];
-      box.appendChild(p);
+  const lineBox = skyCard.querySelector('#finalLines');
+  let fIdx = 0;
 
-      setTimeout(() => p.classList.add('visible'), 100);
+  function revealSkyLine() {
+    if (fIdx < lines.length) {
+      const line = document.createElement('div');
+      line.className = (fIdx === 7) ? 'final-sky-sig-title' : (fIdx === 8 ? 'final-sky-sig-names' : 'final-sky-line');
+      line.textContent = lines[fIdx];
+      lineBox.appendChild(line);
 
-      idx++;
-      const delay = (idx === 1) ? 2200 : 1800;
-      setTimeout(showNextLine, delay);
+      setTimeout(() => line.classList.add('visible'), 100);
+
+      fIdx++;
+      const delay = (fIdx === 2 || fIdx === 7) ? 2200 : 2000;
+      setTimeout(revealSkyLine, delay);
+    } else {
+      setTimeout(() => {
+        const restartBtn = document.createElement('button');
+        restartBtn.className = 'next-section-btn start-again-btn';
+        restartBtn.textContent = "Start Again ❤️";
+        restartBtn.onclick = resetProposalExperience;
+        skyCard.appendChild(restartBtn);
+        setTimeout(() => restartBtn.style.opacity = '1', 100);
+      }, 1500);
     }
   }
 
-  setTimeout(showNextLine, 500);
+  setTimeout(revealSkyLine, 600);
+}
+
+function resetProposalExperience() {
+  const container = document.getElementById('after-yes-experience');
+  if (container) {
+    container.classList.remove('active');
+    container.scrollTop = 0;
+  }
+  goToSection('exp-wait-screen');
+  const env = document.getElementById('letterEnvelope');
+  if (env) env.classList.remove('open');
+  const answer = document.getElementById('answer');
+  if (answer) answer.innerHTML = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function launchCelebration() {
