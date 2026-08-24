@@ -136,12 +136,27 @@ function moveThinkButton(e) {
   if (!card || !btn) return;
 
   const cardRect = card.getBoundingClientRect();
-  const btnWidth = btn.offsetWidth || 140;
+  const btnWidth = btn.offsetWidth || 130;
   const btnHeight = btn.offsetHeight || 45;
 
-  const padding = 15;
+  const padding = 10;
   const maxX = Math.max(padding, cardRect.width - btnWidth - padding);
   const maxY = Math.max(padding, cardRect.height - btnHeight - padding);
+
+  // Extract touch/mouse position if available
+  let touchX = -9999, touchY = -9999;
+  if (e) {
+    if (e.touches && e.touches.length > 0) {
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+    } else if (e.changedTouches && e.changedTouches.length > 0) {
+      touchX = e.changedTouches[0].clientX;
+      touchY = e.changedTouches[0].clientY;
+    } else if (e.clientX !== undefined) {
+      touchX = e.clientX;
+      touchY = e.clientY;
+    }
+  }
 
   // Gather elements to avoid relative to card
   const avoidRects = [];
@@ -162,10 +177,12 @@ function moveThinkButton(e) {
   let currentLeft = btn.offsetLeft;
   let currentTop = btn.offsetTop;
 
-  let bestLeft = currentLeft, bestTop = currentTop;
+  let bestLeft = currentLeft;
+  let bestTop = currentTop;
+  let maxDistFromTouch = -1;
   let validFound = false;
 
-  for (let attempts = 0; attempts < 120; attempts++) {
+  for (let attempts = 0; attempts < 150; attempts++) {
     let candLeft = Math.floor(Math.random() * (maxX - padding + 1)) + padding;
     let candTop = Math.floor(Math.random() * (maxY - padding + 1)) + padding;
 
@@ -176,10 +193,10 @@ function moveThinkButton(e) {
       bottom: candTop + btnHeight
     };
 
-    // Check overlap with any avoided element
+    // Check overlap with avoided elements
     let overlaps = false;
     for (let avoid of avoidRects) {
-      const margin = 12;
+      const margin = 8;
       if (!(candRect.right + margin < avoid.left ||
             candRect.left - margin > avoid.right ||
             candRect.bottom + margin < avoid.top ||
@@ -189,16 +206,26 @@ function moveThinkButton(e) {
       }
     }
 
-    const dist = Math.hypot(candLeft - currentLeft, candTop - currentTop);
-    if (!overlaps && dist >= 50) {
+    const candAbsX = cardRect.left + candLeft + btnWidth / 2;
+    const candAbsY = cardRect.top + candTop + btnHeight / 2;
+    const distFromTouch = Math.hypot(candAbsX - touchX, candAbsY - touchY);
+    const distFromCurrent = Math.hypot(candLeft - currentLeft, candTop - currentTop);
+
+    if (!overlaps && distFromCurrent >= 40 && distFromTouch > 100) {
       bestLeft = candLeft;
       bestTop = candTop;
       validFound = true;
       break;
     }
+
+    if (!overlaps && distFromTouch > maxDistFromTouch) {
+      maxDistFromTouch = distFromTouch;
+      bestLeft = candLeft;
+      bestTop = candTop;
+    }
   }
 
-  // Fallback if no 0-overlap spot found in random attempts
+  // Fallback if tight mobile container
   if (!validFound) {
     const corners = [
       { left: padding, top: padding },
@@ -206,28 +233,15 @@ function moveThinkButton(e) {
       { left: padding, top: maxY },
       { left: maxX, top: maxY }
     ];
+    let maxDist = -1;
     for (let corner of corners) {
-      const candRect = {
-        left: corner.left,
-        right: corner.left + btnWidth,
-        top: corner.top,
-        bottom: corner.top + btnHeight
-      };
-      let overlaps = false;
-      for (let avoid of avoidRects) {
-        if (!(candRect.right < avoid.left ||
-              candRect.left > avoid.right ||
-              candRect.bottom < avoid.top ||
-              candRect.top > avoid.bottom)) {
-          overlaps = true;
-          break;
-        }
-      }
-      if (!overlaps) {
+      const candAbsX = cardRect.left + corner.left + btnWidth / 2;
+      const candAbsY = cardRect.top + corner.top + btnHeight / 2;
+      const dist = Math.hypot(candAbsX - touchX, candAbsY - touchY);
+      if (dist > maxDist) {
+        maxDist = dist;
         bestLeft = corner.left;
         bestTop = corner.top;
-        validFound = true;
-        break;
       }
     }
   }
@@ -244,9 +258,13 @@ function checkDistanceAndMove(e) {
   if (!thinkBtn) return;
   
   let clientX, clientY;
+  const isTouch = (e.touches && e.touches.length > 0) || (e.changedTouches && e.changedTouches.length > 0) || (e.type && e.type.startsWith('touch'));
   if (e.touches && e.touches.length > 0) {
     clientX = e.touches[0].clientX;
     clientY = e.touches[0].clientY;
+  } else if (e.changedTouches && e.changedTouches.length > 0) {
+    clientX = e.changedTouches[0].clientX;
+    clientY = e.changedTouches[0].clientY;
   } else {
     clientX = e.clientX;
     clientY = e.clientY;
@@ -259,19 +277,21 @@ function checkDistanceAndMove(e) {
   const btnCenterY = btnRect.top + btnRect.height / 2;
 
   const distance = Math.hypot(clientX - btnCenterX, clientY - btnCenterY);
+  const threshold = isTouch ? 120 : 75;
 
-  if (distance < 75) {
+  if (distance < threshold) {
     moveThinkButton(e);
   }
 }
 
 const thinkBtn = document.getElementById('thinkBtn');
 if (thinkBtn) {
-  ['mouseover', 'mouseenter', 'touchstart', 'pointerdown', 'click'].forEach(evt => {
+  ['mouseover', 'mouseenter', 'touchstart', 'touchend', 'pointerdown', 'click'].forEach(evt => {
     thinkBtn.addEventListener(evt, moveThinkButton, { passive: false });
   });
-  document.addEventListener('mousemove', checkDistanceAndMove);
-  document.addEventListener('touchmove', checkDistanceAndMove, { passive: false });
+  ['mousemove', 'touchmove', 'touchstart', 'pointerdown', 'pointermove'].forEach(evt => {
+    document.addEventListener(evt, checkDistanceAndMove, { passive: false });
+  });
 }
 
 function burst(){
