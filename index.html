@@ -56,119 +56,189 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   85%  { opacity: 0.5; }
   100% { transform: translateY(-115vh) rotate(360deg) scale(1.2); opacity: 0; }
 }
-@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
-
-/* === YES Celebration Overlay === */
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0/* === YES Celebration Overlay (Emoji-Free High-End Design) === */
 #celebration-overlay {
-  position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
-  display:none;flex-direction:column;align-items:center;justify-content:center;
-  background: linear-gradient(135deg, #fff3f6 0%, #ffdbe4 50%, #ffcad6 100%);
-  overflow:hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #fff2f5 0%, #ffd8e2 50%, #ffb8ca 100%);
+  overflow: hidden;
 }
-#celebration-overlay.active{display:flex;animation:overlayFadeIn 0.8s ease-out;}
-@keyframes overlayFadeIn{0%{opacity:0}100%{opacity:1}}
+#celebration-overlay.active {
+  display: flex;
+  animation: overlayFadeIn 0.8s ease-out;
+}
+@keyframes overlayFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-/* === Man and Woman Couple Animation === */
-.hugging-scene {
+/* Luxury Glassmorphic Container */
+.celebration-card {
+  position: relative;
+  z-index: 10002;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 182, 193, 0.7);
+  box-shadow: 0 25px 60px rgba(230, 50, 90, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.8);
+  border-radius: 32px;
+  padding: 40px 32px;
+  text-align: center;
+  max-width: 520px;
+  width: 90%;
+  animation: cardPopIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+}
+@keyframes cardPopIn {
+  0% { opacity: 0; transform: scale(0.7) translateY(40px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Animated SVG Heart Scene */
+.svg-heart-scene {
+  width: 160px;
+  height: 140px;
+  margin: 0 auto 10px auto;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin: 25px 0 15px 0;
-  z-index: 10002;
-  height: 120px;
 }
 
-.couple-boy {
-  font-size: clamp(65px, 12vw, 95px);
-  position: relative;
-  z-index: 10002;
-  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.12));
-  animation: runBoyIn 1.1s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+.svg-heart-main {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 10px 20px rgba(255, 50, 100, 0.35));
 }
 
-.couple-girl {
-  font-size: clamp(65px, 12vw, 95px);
-  position: relative;
-  z-index: 10002;
-  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.12));
-  animation: runGirlIn 1.1s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+.heart-path-left {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawPath 1.4s ease-out forwards;
 }
 
-.couple-heart {
-  font-size: clamp(50px, 9vw, 75px);
-  z-index: 10003;
-  opacity: 0;
+.heart-path-right {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawPath 1.4s ease-out 0.2s forwards;
+}
+
+.heart-center-bloom {
+  transform-origin: center;
   transform: scale(0);
-  margin: 0 -10px;
-  animation: heartBetweenPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4) 0.9s forwards, heartPulse 2s ease-in-out 1.5s infinite;
-  filter: drop-shadow(0 0 25px rgba(255, 50, 100, 0.65));
+  animation: bloomPulse 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.4) 1s forwards, gentleHeartPulse 2s ease-in-out 1.8s infinite;
 }
 
-@keyframes runBoyIn {
-  0% { transform: translateX(-50vw) rotate(-20deg); opacity: 0; }
-  80% { transform: translateX(8px) rotate(5deg); opacity: 1; }
-  100% { transform: translateX(0px) rotate(0deg); opacity: 1; }
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
 }
 
-@keyframes runGirlIn {
-  0% { transform: translateX(50vw) rotate(20deg); opacity: 0; }
-  80% { transform: translateX(-8px) rotate(-5deg); opacity: 1; }
-  100% { transform: translateX(0px) rotate(0deg); opacity: 1; }
-}
-
-@keyframes heartBetweenPop {
-  0% { transform: scale(0) rotate(-15deg); opacity: 0; }
-  70% { transform: scale(1.35) rotate(5deg); opacity: 1; }
+@keyframes bloomPulse {
+  0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+  70% { transform: scale(1.2) rotate(5deg); opacity: 1; }
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-@keyframes heartPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@keyframes gentleHeartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
 
-.celebration-text {
-  font-family:Pacifico,cursive;color:#8d2348;text-align:center;z-index:10002;
-  text-shadow:0 0 15px rgba(255,180,200,0.4);
-  opacity:0;animation:textSlideUp 1s ease-out 0.5s forwards;
-  padding: 0 15px;
+/* Shimmering Text Styling */
+.celebration-title {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(32px, 6vw, 48px);
+  margin: 12px 0 8px 0;
+  background: linear-gradient(135deg, #a81c48 0%, #e63956 50%, #ff5277 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 15px rgba(255, 180, 200, 0.4);
+  opacity: 0;
+  animation: textFadeUp 0.8s ease-out 0.6s forwards;
 }
-.celebration-text h2{font-size:clamp(28px,5vw,46px);margin:8px 0;color:#96254b}
-.celebration-text p{font-size:clamp(15px,2.5vw,19px);color:#5b2634;line-height:1.7;max-width:500px;margin:0 auto}
-.celebration-names {
-  margin-top:14px;
-  font-family:Pacifico;
-  font-size:clamp(22px,4vw,32px);
-  color: #8d2348;
-  opacity:0;
-  animation:textSlideUp 0.8s ease-out 1.2s forwards;
+
+.celebration-message {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(14px, 2.8vw, 17px);
+  color: #632338;
+  line-height: 1.7;
+  margin: 0 auto;
+  opacity: 0;
+  animation: textFadeUp 0.8s ease-out 0.9s forwards;
 }
-.celebration-sub {
-  font-size: 0.8em;
-  color: #b92e5b;
-  display: inline-block;
+
+.celebration-names-box {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(255, 120, 160, 0.4);
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(22px, 4.5vw, 32px);
+  color: #941f45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  animation: textFadeUp 0.8s ease-out 1.2s forwards;
+}
+
+.celebration-sub-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.55em;
+  color: #b8325a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
   margin-top: 4px;
 }
-@keyframes textSlideUp{0%{opacity:0;transform:translateY(25px)}100%{opacity:1;transform:translateY(0)}}
 
-.cute-emoji-particle {
+@keyframes textFadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating SVG Rose Petal Particles */
+.rose-petal {
   position: absolute;
   z-index: 10001;
   pointer-events: none;
-  user-select: none;
-  animation: floatCuteEmoji linear forwards;
+  animation: floatRosePetal linear forwards;
+  filter: drop-shadow(0 4px 8px rgba(255, 100, 140, 0.25));
 }
-@keyframes floatCuteEmoji {
+
+@keyframes floatRosePetal {
   0% { transform: translateY(0) rotate(0deg) scale(0.6); opacity: 0; }
-  15% { opacity: 0.85; }
-  85% { opacity: 0.7; }
-  100% { transform: translateY(-110vh) rotate(360deg) scale(1.1); opacity: 0; }
+  15% { opacity: 0.9; }
+  85% { opacity: 0.75; }
+  100% { transform: translateY(-115vh) rotate(420deg) scale(1.2); opacity: 0; }
 }
 
 .celebration-close {
-  position:absolute;top:20px;right:25px;font-size:28px;color:#96254b;cursor:pointer;
-  z-index:10003;background:none;border:none;padding:8px;margin:0;
-  opacity:0.5;transition:opacity 0.3s;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 26px;
+  color: #941f45;
+  cursor: pointer;
+  z-index: 10003;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 180, 200, 0.5);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
-.celebration-close:hover{opacity:0.8}
+.celebration-close:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
 
 @media(max-width:750px){.hero{grid-template-columns:1fr;text-align:center;padding-top:35px}nav{padding:14px 5%}nav a{display:none}section{padding:55px 6%}.memories{grid-template-columns:1fr}.card img{height:380px}.hugging-scene{height:100px}.hug-character{font-size:65px}}
 </style>
@@ -245,43 +315,74 @@ function launchCelebration() {
   overlay.innerHTML = `
     <button class="celebration-close" onclick="closeCelebration()">✕</button>
 
-    <div class="hugging-scene">
-      <div class="couple-boy">👨🏻</div>
-      <div class="couple-heart">❤️</div>
-      <div class="couple-girl">👩🏻</div>
-    </div>
+    <div class="celebration-card">
+      <div class="svg-heart-scene">
+        <svg class="svg-heart-main" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff4b72"/>
+              <stop offset="50%" stop-color="#ff6584"/>
+              <stop offset="100%" stop-color="#ff1a4b"/>
+            </linearGradient>
+            <linearGradient id="strokeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ff9ebb"/>
+              <stop offset="100%" stop-color="#ff4770"/>
+            </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+          <path class="heart-path-left" d="M50,25 C50,25 35,5 20,15 C5,25 10,48 50,78" stroke="url(#strokeGrad)" stroke-width="4" stroke-linecap="round"/>
+          <path class="heart-path-right" d="M50,25 C50,25 65,5 80,15 C95,25 90,48 50,78" stroke="url(#strokeGrad)" stroke-width="4" stroke-linecap="round"/>
+          <path class="heart-center-bloom" d="M50,22 C37,8 14,20 18,37 C24,57 50,74 50,74 C50,74 76,57 82,37 C86,20 63,8 50,22 Z" fill="url(#heartGrad)" filter="url(#glow)"/>
+        </svg>
+      </div>
 
-    <div class="celebration-text">
-      <h2>She Said Yes! 💍✨</h2>
-      <p>You just made my heart the happiest! 🥹❤️<br>
-      I promise to love you, cherish you, and stand beside you — today, tomorrow, and always. 💌</p>
-      <p class="celebration-names">
-        Mrigangka ❤️ Munu<br>
-        <span class="celebration-sub">Forever & Always 🥰</span>
+      <h2 class="celebration-title">She Said Yes!</h2>
+
+      <p class="celebration-message">
+        You just made my heart the happiest!<br>
+        I promise to love you, cherish you, and stand beside you — today, tomorrow, and always.
       </p>
+
+      <div class="celebration-names-box">
+        <span>Mrigangka</span>
+        <svg width="22" height="20" viewBox="0 0 24 22" fill="#ff3b68" style="filter: drop-shadow(0 2px 5px rgba(255,59,104,0.4));">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span>Munu</span>
+      </div>
+      <div class="celebration-sub-tag">Forever & Always</div>
     </div>
   `;
   
   overlay.classList.add('active');
 
-  // Gentle ambient hearts in background (not too much)
-  floatGentleHearts(overlay);
+  // Floating SVG rose petals in background
+  floatGentleRosePetals(overlay);
 }
 
-function floatGentleHearts(container) {
-  const hearts = ['💕', '💖', '💗', '🌸', '✨'];
-  for (let i = 0; i < 12; i++) {
+function floatGentleRosePetals(container) {
+  const colors = ['#ff8da1', '#ff5c7c', '#ff3b68', '#ffa3b5'];
+  for (let i = 0; i < 18; i++) {
     const el = document.createElement('div');
-    el.className = 'cute-emoji-particle';
-    el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-    el.style.left = (Math.random() * 90 + 5) + '%';
+    el.className = 'rose-petal';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const size = Math.floor(Math.random() * 10 + 16);
+    
+    el.innerHTML = `
+      <svg width="${size}" height="${size}" viewBox="0 0 30 30" fill="${color}" style="transform: rotate(${Math.random() * 360}deg);">
+        <path d="M15,2 C22,2 28,10 28,18 C28,25 21,28 15,28 C9,28 2,25 2,18 C2,10 8,2 15,2 Z"/>
+      </svg>
+    `;
+    el.style.left = (Math.random() * 92 + 4) + '%';
     el.style.bottom = '-40px';
-    el.style.fontSize = (Math.random() * 12 + 16) + 'px';
-    el.style.animationDuration = (Math.random() * 3 + 5) + 's';
-    el.style.animationDelay = (Math.random() * 2) + 's';
+    el.style.animationDuration = (Math.random() * 4 + 6) + 's';
+    el.style.animationDelay = (Math.random() * 3) + 's';
 
     container.appendChild(el);
-    setTimeout(() => el.remove(), 8500);
+    setTimeout(() => el.remove(), 10500);
   }
 }
 
@@ -317,13 +418,19 @@ function launchFireworks(container) {
 }
 
 function rainConfetti(container) {
-  const shapes = ['💕','💖','✨','💗','🌸','🌺'];
+  const colors = ['#ff4b72', '#ff8da1', '#ffb3c1', '#ffa3b5', '#ffd1dc'];
 
   for (let i = 0; i < 20; i++) {
     const confetti = document.createElement('div');
     confetti.className = 'confetti';
-    confetti.textContent = shapes[Math.floor(Math.random() * shapes.length)];
-    confetti.style.fontSize = (Math.random() * 10 + 14) + 'px';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const size = Math.floor(Math.random() * 8 + 12);
+    
+    confetti.innerHTML = `
+      <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    `;
     confetti.style.background = 'none';
     confetti.style.left = Math.random() * 100 + '%';
     confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
