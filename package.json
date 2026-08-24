@@ -1,0 +1,10 @@
+{
+  "name": "mrigangka-munu-proposal",
+  "version": "1.0.0",
+  "description": "Romantic proposal website for Mrigangka & Munu",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve . -p 3000",
+    "start": "npx -y serve . -p 3000"
+  }
+}
