@@ -8,29 +8,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap');
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Poppins,sans-serif;background:#fff3f6;color:#5b2634}
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);padding:16px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 15px #d86a8825}
-.logo{font-family:Pacifico;font-size:22px;color:#b92e5b}
-nav a{color:#6b3443;text-decoration:none;margin-left:20px;font-weight:600}
+body{margin:0;font-family:Poppins,sans-serif;background:#fffdf0;color:#582f0e}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,253,240,.92);backdrop-filter:blur(10px);padding:16px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 15px rgba(217,119,6,0.15)}
+.logo{font-family:Pacifico;font-size:22px;color:#b45309}
+nav a{color:#78350f;text-decoration:none;margin-left:20px;font-weight:600;transition:color 0.2s}
+nav a:hover{color:#d97706}
 section{position:relative;z-index:2;padding:75px 8%;max-width:1100px;margin:auto}
 .hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
-h1{font-family:Pacifico;font-size:clamp(42px,7vw,76px);margin:10px 0;color:#8d2348}
-h2{font-family:Pacifico;font-size:44px;color:#a72551;text-align:center}
+h1{font-family:Pacifico;font-size:clamp(42px,7vw,76px);margin:10px 0;color:#92400e}
+h2{font-family:Pacifico;font-size:44px;color:#92400e;text-align:center}
 p{font-size:17px;line-height:1.8}
-.heart-photo{width:min(470px,100%);aspect-ratio:1/1;object-fit:cover;border-radius:50% 50% 48% 48%;border:9px solid #ff9fba;box-shadow:0 20px 45px #9d294330}
-.badge{display:inline-block;background:#ffd5e0;padding:9px 16px;border-radius:30px;font-weight:700;color:#a72551}
-.btn{display:inline-block;background:#f45d88;color:white;padding:15px 27px;border-radius:30px;text-decoration:none;font-weight:700;box-shadow:0 8px 20px #f45d8840}
+.heart-photo{width:min(470px,100%);aspect-ratio:1/1;object-fit:cover;border-radius:50% 50% 48% 48%;border:9px solid #fde047;box-shadow:0 20px 45px rgba(180,83,9,0.25)}
+.badge{display:inline-block;background:#fef3c7;padding:9px 16px;border-radius:30px;font-weight:700;color:#b45309;border:1px solid #fde047}
+.btn{display:inline-block;background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);color:white;padding:15px 27px;border-radius:30px;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(217,119,6,0.35);transition:transform 0.2s,box-shadow 0.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(217,119,6,0.45)}
 .memories{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.card{background:white;padding:12px;border-radius:18px;box-shadow:0 12px 30px #7d274020;transform:rotate(-1deg)}
+.card{background:white;padding:12px;border-radius:18px;box-shadow:0 12px 30px rgba(180,83,9,0.15);transform:rotate(-1deg)}
 .card:nth-child(2){transform:rotate(1deg)}
 .card img{width:100%;height:430px;object-fit:cover;border-radius:12px}
-.question{background:linear-gradient(135deg,#ffe0e9,#fff7fa);border:2px dashed #f49ab4;border-radius:30px;text-align:center;padding:55px 25px;position:relative;min-height:380px;overflow:hidden;}
-.big{font-family:Pacifico;font-size:clamp(30px,5vw,52px);color:#96254b}
+.question{background:linear-gradient(135deg,#fef9c3,#fffdf0);border:2px dashed #f59e0b;border-radius:30px;text-align:center;padding:55px 25px;position:relative;min-height:380px;overflow:hidden;}
+.big{font-family:Pacifico;font-size:clamp(30px,5vw,52px);color:#92400e}
 button{border:0;border-radius:30px;padding:16px 28px;font-size:16px;font-weight:700;cursor:pointer;margin:8px}
-.yes{background:#f45d88;color:white}
-.think{background:white;color:#d43d68;border:2px solid #f45d88;transition:all 0.15s ease-out;position:relative;user-select:none;-webkit-tap-highlight-color:transparent;}
-#answer{margin-top:20px;font-weight:700;font-size:21px;color:#b12452;min-height:30px}
-footer{position:relative;z-index:2;text-align:center;padding:50px 20px;background:#ffdce6}
+.yes{background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);color:white;box-shadow:0 8px 20px rgba(217,119,6,0.35)}
+.think{background:white;color:#d97706;border:2px solid #f59e0b;transition:all 0.15s ease-out;position:relative;user-select:none;-webkit-tap-highlight-color:transparent;}
+#answer{margin-top:20px;font-weight:700;font-size:21px;color:#b45309;min-height:30px}
+footer{position:relative;z-index:2;text-align:center;padding:50px 20px;background:#fef9c3;color:#582f0e}
 .script{font-family:Pacifico;font-size:28px}
 #hearts-bg {
   position: fixed;
@@ -47,8 +49,8 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   opacity: 0;
   user-select: none;
   font-size: 1.2rem;
-  color: #ff4d6d;
-  filter: drop-shadow(0 0 6px rgba(255,77,109,0.4));
+  color: #f59e0b;
+  filter: drop-shadow(0 0 6px rgba(245,158,11,0.5));
 }
 @keyframes floatHeart {
   0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
@@ -62,7 +64,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 #celebration-overlay {
   position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
   display:none;flex-direction:column;align-items:center;justify-content:center;
-  background: linear-gradient(135deg, #fff3f6 0%, #ffdbe4 50%, #ffcad6 100%);
+  background: linear-gradient(135deg, #fffdf0 0%, #fef9c3 50%, #fef08a 100%);
   overflow:hidden;
 }
 #celebration-overlay.active{display:flex;animation:overlayFadeIn 0.8s ease-out;}
@@ -102,7 +104,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   transform: scale(0);
   margin: 0 -10px;
   animation: heartBetweenPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4) 0.9s forwards, heartPulse 2s ease-in-out 1.5s infinite;
-  filter: drop-shadow(0 0 25px rgba(255, 50, 100, 0.65));
+  filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.7));
 }
 
 @keyframes runBoyIn {
@@ -126,24 +128,24 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 @keyframes heartPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 
 .celebration-text {
-  font-family:Pacifico,cursive;color:#8d2348;text-align:center;z-index:10002;
-  text-shadow:0 0 15px rgba(255,180,200,0.4);
+  font-family:Pacifico,cursive;color:#92400e;text-align:center;z-index:10002;
+  text-shadow:0 0 15px rgba(254,240,138,0.5);
   opacity:0;animation:textSlideUp 1s ease-out 0.5s forwards;
   padding: 0 15px;
 }
-.celebration-text h2{font-size:clamp(28px,5vw,46px);margin:8px 0;color:#96254b}
-.celebration-text p{font-size:clamp(15px,2.5vw,19px);color:#5b2634;line-height:1.7;max-width:500px;margin:0 auto}
+.celebration-text h2{font-size:clamp(28px,5vw,46px);margin:8px 0;color:#92400e}
+.celebration-text p{font-size:clamp(15px,2.5vw,19px);color:#582f0e;line-height:1.7;max-width:500px;margin:0 auto}
 .celebration-names {
   margin-top:14px;
   font-family:Pacifico;
   font-size:clamp(22px,4vw,32px);
-  color: #8d2348;
+  color: #92400e;
   opacity:0;
   animation:textSlideUp 0.8s ease-out 1.2s forwards;
 }
 .celebration-sub {
   font-size: 0.8em;
-  color: #b92e5b;
+  color: #b45309;
   display: inline-block;
   margin-top: 4px;
 }
@@ -164,7 +166,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 }
 
 .celebration-close {
-  position:absolute;top:20px;right:25px;font-size:28px;color:#96254b;cursor:pointer;
+  position:absolute;top:20px;right:25px;font-size:28px;color:#92400e;cursor:pointer;
   z-index:10003;background:none;border:none;padding:8px;margin:0;
   opacity:0.5;transition:opacity 0.3s;
 }
@@ -178,23 +180,23 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   z-index: 100005;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(244, 93, 136, 0.3);
-  color: #a72551;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #b45309;
   padding: 8px 16px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(244, 93, 136, 0.2);
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.2);
   display: flex;
   align-items: center;
   gap: 6px;
   transition: all 0.3s ease;
 }
 .music-toggle.playing {
-  background: #f45d88;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: white;
-  box-shadow: 0 4px 20px rgba(244, 93, 136, 0.5);
+  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.5);
 }
 
 /* ===== AFTER YES EXPERIENCE CONTAINER ===== */
@@ -206,7 +208,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   height: 100%;
   z-index: 99990;
   display: none;
-  background: #fff3f6;
+  background: #fffdf0;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -232,12 +234,12 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 
 /* Screen 1: Transition "Wait..." */
 .transition-wait {
-  background: linear-gradient(135deg, #fff0f3 0%, #ffdbe4 50%, #ffcad6 100%);
+  background: linear-gradient(135deg, #fffdf0 0%, #fef9c3 50%, #fef08a 100%);
 }
 .wait-text {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(38px, 8vw, 68px);
-  color: #8d2348;
+  color: #92400e;
   margin-bottom: 15px;
   opacity: 0;
   animation: textSlideUp 1s ease forwards;
@@ -245,7 +247,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .wait-subtext {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(18px, 3.5vw, 26px);
-  color: #6b2639;
+  color: #78350f;
   max-width: 550px;
   margin-bottom: 25px;
   opacity: 0;
@@ -254,13 +256,13 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .wait-note {
   font-family: 'Pacifico', cursive;
   font-size: clamp(16px, 3vw, 22px);
-  color: #b92e5b;
+  color: #b45309;
   margin-bottom: 35px;
   opacity: 0;
   animation: textSlideUp 1s ease 2.2s forwards;
 }
 .glowing-btn {
-  background: linear-gradient(135deg, #f45d88 0%, #d43d68 100%);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: white;
   border: none;
   padding: 16px 36px;
@@ -268,22 +270,22 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(244, 93, 136, 0.4);
+  box-shadow: 0 10px 30px rgba(217, 119, 6, 0.4);
   opacity: 0;
   transform: scale(0.8);
   animation: popInBtn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.5s forwards, glowPulse 2s infinite 4.3s;
 }
 @keyframes popInBtn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
-@keyframes glowPulse { 0%, 100% { box-shadow: 0 10px 30px rgba(244, 93, 136, 0.4); transform: scale(1); } 50% { box-shadow: 0 12px 40px rgba(244, 93, 136, 0.8); transform: scale(1.05); } }
+@keyframes glowPulse { 0%, 100% { box-shadow: 0 10px 30px rgba(217, 119, 6, 0.4); transform: scale(1); } 50% { box-shadow: 0 12px 40px rgba(217, 119, 6, 0.8); transform: scale(1.05); } }
 
 /* ===== SECTION 1: OPEN MY HEART / ENVELOPE ===== */
 .envelope-screen {
-  background: linear-gradient(135deg, #ffeef2 0%, #ffd6e0 100%);
+  background: linear-gradient(135deg, #fffdf0 0%, #fef9c3 100%);
 }
 .envelope-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(34px, 7vw, 56px);
-  color: #8d2348;
+  color: #92400e;
   margin-bottom: 30px;
 }
 .envelope-container {
@@ -296,9 +298,9 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .envelope-body {
   width: 100%;
   height: 100%;
-  background: #f45d88;
+  background: #f59e0b;
   border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(167, 37, 81, 0.25);
+  box-shadow: 0 18px 40px rgba(180, 83, 9, 0.25);
   position: relative;
   cursor: pointer;
 }
@@ -308,7 +310,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   width: 0; height: 0;
   border-left: min(170px, 42.5vw) solid transparent;
   border-right: min(170px, 42.5vw) solid transparent;
-  border-top: 115px solid #d9436e;
+  border-top: 115px solid #d97706;
   transform-origin: top;
   transition: transform 0.6s ease;
   z-index: 3;
@@ -322,7 +324,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   bottom: 12px;
   left: 6%;
   width: 88%;
-  background: #fffafb;
+  background: #fffdf5;
   border-radius: 12px;
   padding: 22px 18px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
@@ -339,36 +341,36 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-family: 'Outfit', sans-serif;
   font-size: 16px;
   line-height: 1.7;
-  color: #5b2634;
+  color: #582f0e;
 }
 .letter-salutation {
   font-family: 'Great Vibes', cursive;
   font-size: 28px;
-  color: #96254b;
+  color: #92400e;
   margin-bottom: 10px;
 }
 
 /* ===== SECTION 2: OUR STORY ===== */
 .story-screen {
-  background: #fff5f7;
+  background: #fffdf5;
   padding: 80px 20px;
 }
 .story-header {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(48px, 9vw, 82px);
-  color: #8d2348;
+  color: #92400e;
   margin-bottom: 40px;
 }
 .chapter-card {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 182, 193, 0.4);
+  border: 1px solid rgba(245, 158, 11, 0.3);
   border-radius: 24px;
   padding: 35px 28px;
   max-width: 750px;
   width: 100%;
   margin: 0 auto 40px auto;
-  box-shadow: 0 15px 40px rgba(167, 37, 81, 0.08);
+  box-shadow: 0 15px 40px rgba(180, 83, 9, 0.1);
   text-align: left;
   box-sizing: border-box;
 }
@@ -377,21 +379,21 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 3px;
-  color: #f45d88;
+  color: #d97706;
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 .chapter-title {
   font-family: 'Pacifico', cursive;
   font-size: clamp(24px, 4vw, 36px);
-  color: #8d2348;
+  color: #92400e;
   margin-bottom: 18px;
 }
 .chapter-body {
   font-family: 'Outfit', sans-serif;
   font-size: 17px;
   line-height: 1.8;
-  color: #5b2634;
+  color: #582f0e;
 }
 
 /* Photo Gallery Placeholders */
@@ -405,24 +407,24 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   background: white;
   padding: 14px;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(125, 39, 64, 0.12);
+  box-shadow: 0 10px 25px rgba(180, 83, 9, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
 .photo-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 18px 35px rgba(125, 39, 64, 0.2);
+  box-shadow: 0 18px 35px rgba(180, 83, 9, 0.22);
 }
 .photo-box {
   width: 100%;
   height: 220px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #ffdce5 0%, #ffb8ca 100%);
+  background: linear-gradient(135deg, #fef9c3 0%, #fde047 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #96254b;
+  color: #92400e;
   font-weight: 600;
   font-size: 15px;
   position: relative;
@@ -431,14 +433,14 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .photo-caption {
   font-family: 'Great Vibes', cursive;
   font-size: 22px;
-  color: #8d2348;
+  color: #92400e;
   margin-top: 12px;
 }
 
 /* ===== SECTION 3: THINGS I NEVER TOLD YOU (DARK NIGHT SKY) ===== */
 .dark-night-screen {
-  background: linear-gradient(180deg, #0d0814 0%, #1b0e25 50%, #28102d 100%);
-  color: #ffe5ec;
+  background: linear-gradient(180deg, #0d0e14 0%, #1b1625 50%, #2d2410 100%);
+  color: #fef08a;
   position: relative;
   overflow: hidden;
 }
@@ -450,7 +452,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 }
 .star-particle {
   position: absolute;
-  background: white;
+  background: #fef9c3;
   border-radius: 50%;
   animation: twinkle linear infinite alternate;
 }
@@ -459,10 +461,10 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .dark-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(42px, 8vw, 76px);
-  color: #ff9ebb;
+  color: #fde047;
   margin-bottom: 40px;
   z-index: 2;
-  text-shadow: 0 0 20px rgba(255, 158, 187, 0.4);
+  text-shadow: 0 0 20px rgba(253, 224, 71, 0.5);
 }
 .sentence-container {
   max-width: 680px;
@@ -477,7 +479,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-family: 'Outfit', sans-serif;
   font-size: clamp(20px, 4vw, 30px);
   line-height: 1.7;
-  color: #fff0f5;
+  color: #fef9c3;
   margin: 14px 0;
   opacity: 0;
   transform: translateY(20px);
@@ -490,13 +492,13 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 
 /* ===== SECTION 4: MY PROMISE ===== */
 .promise-screen {
-  background: linear-gradient(135deg, #fff3f6 0%, #ffdfe7 100%);
+  background: linear-gradient(135deg, #fffdf0 0%, #fef9c3 100%);
   padding: 80px 20px;
 }
 .promise-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(46px, 9vw, 78px);
-  color: #8d2348;
+  color: #92400e;
   margin-bottom: 35px;
 }
 .promise-list {
@@ -506,7 +508,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .promise-item {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(18px, 3.5vw, 24px);
-  color: #5b2634;
+  color: #582f0e;
   line-height: 1.8;
   margin: 12px 0;
   opacity: 0;
@@ -519,7 +521,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 }
 .promise-highlight {
   font-family: 'Pacifico', cursive;
-  color: #96254b;
+  color: #92400e;
   font-size: clamp(22px, 4vw, 32px);
   margin-top: 25px;
 }
@@ -528,7 +530,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 #countdown-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(13, 8, 20, 0.95);
+  background: rgba(13, 14, 20, 0.95);
   backdrop-filter: blur(15px);
   z-index: 100010;
   display: none;
@@ -540,16 +542,15 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .count-num {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(100px, 25vw, 200px);
-  color: #ff4d6d;
-  text-shadow: 0 0 40px rgba(255, 77, 109, 0.8);
+  color: #fde047;
+  text-shadow: 0 0 40px rgba(253, 224, 71, 0.8);
   animation: pulseCount 0.9s ease infinite alternate;
 }
 @keyframes pulseCount { 0% { transform: scale(0.85); opacity: 0.6; } 100% { transform: scale(1.15); opacity: 1; } }
 
-/* ===== SECTION 6: OUR FUTURE CARDS ===== */
 /* ===== SECTION 6: OUR FUTURE & FINAL EMOTIONAL EXPERIENCE ===== */
 .future-screen {
-  background: linear-gradient(180deg, #fff0f3 0%, #ffdfe7 50%, #ffd0dc 100%);
+  background: linear-gradient(180deg, #fffdf0 0%, #fef9c3 50%, #fef08a 100%);
   padding: 80px 20px;
   position: relative;
   overflow: hidden;
@@ -579,7 +580,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .future-sub-line {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(20px, 3.8vw, 28px);
-  color: #8d2348;
+  color: #92400e;
   font-weight: 500;
   margin-top: 10px;
 }
@@ -587,33 +588,33 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .future-moment-card {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 182, 193, 0.4);
+  border: 1px solid rgba(245, 158, 11, 0.3);
   border-radius: 22px;
   padding: 35px 25px;
-  box-shadow: 0 12px 35px rgba(167, 37, 81, 0.1);
+  box-shadow: 0 12px 35px rgba(180, 83, 9, 0.1);
   text-align: center;
 }
 .future-moment-title {
   font-family: 'Pacifico', cursive;
   font-size: clamp(22px, 4vw, 32px);
-  color: #8d2348;
+  color: #92400e;
   margin: 12px 0 8px 0;
 }
 .future-moment-text {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(16px, 3vw, 20px);
-  color: #5b2634;
+  color: #582f0e;
   line-height: 1.7;
 }
 
 /* THROUGH EVERYTHING CARD */
 .through-everything-card {
-  background: linear-gradient(135deg, rgba(255, 240, 245, 0.95) 0%, rgba(255, 225, 235, 0.95) 100%);
+  background: linear-gradient(135deg, rgba(254, 249, 195, 0.95) 0%, rgba(254, 240, 138, 0.95) 100%);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(244, 93, 136, 0.3);
+  border: 1px solid rgba(245, 158, 11, 0.3);
   border-radius: 26px;
   padding: 40px 28px;
-  box-shadow: 0 18px 45px rgba(141, 35, 72, 0.15);
+  box-shadow: 0 18px 45px rgba(180, 83, 9, 0.15);
   text-align: center;
 }
 .through-title {
@@ -621,13 +622,13 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-weight: 700;
   font-size: clamp(24px, 4.5vw, 34px);
   letter-spacing: 1.5px;
-  color: #8d2348;
+  color: #92400e;
   margin-bottom: 30px;
 }
 .te-line {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(17px, 3.2vw, 22px);
-  color: #5b2634;
+  color: #582f0e;
   line-height: 1.8;
   margin: 12px 0;
   opacity: 0;
@@ -641,7 +642,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .te-highlight {
   font-family: 'Pacifico', cursive;
   font-size: clamp(20px, 3.8vw, 28px);
-  color: #96254b;
+  color: #92400e;
   margin-top: 25px;
 }
 
@@ -650,14 +651,15 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   border-radius: 24px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
   padding: 35px 25px;
-  box-shadow: 0 12px 35px rgba(167, 37, 81, 0.12);
+  box-shadow: 0 12px 35px rgba(180, 83, 9, 0.12);
   text-align: center;
 }
 .msg-line {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(19px, 3.5vw, 26px);
-  color: #6b2639;
+  color: #78350f;
   margin: 14px 0;
   opacity: 0;
   transform: translateY(12px);
@@ -676,7 +678,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .msg-salutation {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(32px, 6vw, 48px);
-  color: #8d2348;
+  color: #92400e;
   margin-top: 15px;
   opacity: 0;
   transition: opacity 1s ease;
@@ -684,11 +686,11 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 
 /* FINAL SKY CARD */
 .final-sky-card {
-  background: linear-gradient(180deg, #090514 0%, #170b25 50%, #280a2a 100%);
+  background: linear-gradient(180deg, #090914 0%, #171525 50%, #28210a 100%);
   border-radius: 28px;
   padding: 45px 28px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  color: #ffe5ec;
+  color: #fef08a;
   text-align: center;
   position: relative;
 }
@@ -696,7 +698,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-family: 'Outfit', sans-serif;
   font-size: clamp(18px, 3.5vw, 24px);
   line-height: 1.8;
-  color: #fff0f5;
+  color: #fef9c3;
   margin: 14px 0;
   opacity: 0;
   transform: translateY(15px);
@@ -709,7 +711,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .final-sky-sig-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(32px, 6vw, 48px);
-  color: #ff9ebb;
+  color: #fde047;
   margin-top: 25px;
   opacity: 0;
   transition: opacity 1.2s ease;
@@ -717,14 +719,14 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .final-sky-sig-names {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(38px, 7vw, 56px);
-  color: #ffb8ca;
+  color: #fef08a;
   margin-top: 10px;
   opacity: 0;
   transition: opacity 1.2s ease;
-  text-shadow: 0 0 20px rgba(255, 184, 202, 0.5);
+  text-shadow: 0 0 20px rgba(253, 224, 71, 0.5);
 }
 .start-again-btn {
-  background: linear-gradient(135deg, #f45d88 0%, #d43d68 100%);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   margin-top: 35px;
   opacity: 0;
   transition: opacity 0.8s ease, transform 0.2s ease;
@@ -732,8 +734,8 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 
 /* ===== FINAL SECTION (STARRY NIGHT SKY LETTER) ===== */
 .final-sky-screen {
-  background: linear-gradient(180deg, #090514 0%, #150a21 50%, #250b28 100%);
-  color: #ffe5ec;
+  background: linear-gradient(180deg, #090914 0%, #151321 50%, #25200b 100%);
+  color: #fef08a;
   position: relative;
 }
 .final-text-block {
@@ -745,7 +747,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-family: 'Outfit', sans-serif;
   font-size: clamp(18px, 3.5vw, 26px);
   line-height: 1.8;
-  color: #fff0f5;
+  color: #fef9c3;
   margin: 16px 0;
   opacity: 0;
   transform: translateY(15px);
@@ -758,13 +760,13 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 .final-signature {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(36px, 7vw, 58px);
-  color: #ff9ebb;
+  color: #fde047;
   margin-top: 30px;
-  text-shadow: 0 0 15px rgba(255, 158, 187, 0.5);
+  text-shadow: 0 0 15px rgba(253, 224, 71, 0.5);
 }
 
 .next-section-btn {
-  background: #f45d88;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: white;
   border: none;
   padding: 15px 32px;
@@ -773,13 +775,13 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-weight: 700;
   cursor: pointer;
   margin-top: 30px;
-  box-shadow: 0 8px 25px rgba(244, 93, 136, 0.35);
+  box-shadow: 0 8px 25px rgba(217, 119, 6, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   z-index: 10;
 }
 .next-section-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(244, 93, 136, 0.5);
+  box-shadow: 0 12px 30px rgba(217, 119, 6, 0.5);
 }
 
 @media(max-width:750px){
@@ -1493,7 +1495,7 @@ function floatGentleHearts(container) {
 }
 
 function launchFireworks(container) {
-  const colors = ['#ffb3c1','#ffc6ff','#ffe5ec','#ffb7b2','#ffdac1','#e2afff'];
+  const colors = ['#fef08a','#fde047','#fef9c3','#f59e0b','#fbbf24','#fef3c7'];
   const cx = Math.random() * 60 + 20;
   const cy = Math.random() * 30 + 20;
 
@@ -1551,7 +1553,7 @@ function sparkleRings(container) {
     ring.style.left = (Math.random() * 70 + 15) + '%';
     ring.style.top = (Math.random() * 50 + 25) + '%';
     ring.style.animationDelay = (Math.random() * 1.5) + 's';
-    ring.style.borderColor = 'rgba(255, 180, 200, 0.4)';
+    ring.style.borderColor = 'rgba(245, 158, 11, 0.4)';
     container.appendChild(ring);
     setTimeout(() => ring.remove(), 3500);
   }
