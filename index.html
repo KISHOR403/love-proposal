@@ -28,8 +28,9 @@ p{font-size:17px;line-height:1.8}
 .card img{width:100%;height:430px;object-fit:cover;border-radius:12px}
 .question{background:linear-gradient(135deg,#fef9c3,#fffdf0);border:2px dashed #f59e0b;border-radius:30px;text-align:center;padding:55px 25px;position:relative;min-height:380px;overflow:hidden;}
 .big{font-family:Pacifico;font-size:clamp(30px,5vw,52px);color:#92400e}
-button{border:0;border-radius:30px;padding:16px 28px;font-size:16px;font-weight:700;cursor:pointer;margin:8px}
-.yes{background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);color:white;box-shadow:0 8px 20px rgba(217,119,6,0.35)}
+button{border:0;border-radius:30px;padding:16px 28px;font-size:16px;font-weight:700;cursor:pointer;margin:8px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+.yes{background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);color:white;box-shadow:0 8px 20px rgba(217,119,6,0.35);position:relative;z-index:60;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;}
+.yes:active{transform:scale(0.97);}
 .think{background:white;color:#d97706;border:2px solid #f59e0b;transition:all 0.15s ease-out;position:relative;user-select:none;-webkit-tap-highlight-color:transparent;}
 #answer{margin-top:20px;font-weight:700;font-size:21px;color:#b45309;min-height:30px}
 footer{position:relative;z-index:2;text-align:center;padding:50px 20px;background:#fef9c3;color:#582f0e}
@@ -883,7 +884,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 <div class="question">
 <div class="big">Are you ready to make “us” permanent?</div>
 <p>Not just for a moment. Not just for today.<br>But for all the beautiful tomorrows waiting for us. ❤️</p>
-<button class="yes" onclick="sayYes()">YES, FOREVER! 💖</button>
+<button class="yes" id="yesBtn" onclick="sayYes(event)">YES, FOREVER! 💖</button>
 <button class="think" id="thinkBtn" onmouseover="moveThinkButton(event)" ontouchstart="moveThinkButton(event)" onclick="moveThinkButton(event)">Let me think 🥺</button>
 <div id="answer"></div>
 </div>
@@ -1148,8 +1149,20 @@ class RomanticMusicPlayer {
 const musicPlayer = new RomanticMusicPlayer();
 
 // ===== AFTER YES EMOTIONAL EXPERIENCE LOGIC =====
-function sayYes(){
-  document.getElementById('answer').innerHTML = "You just made my heart the happiest! ❤️🥹 I love you, Munu!";
+let lastYesTime = 0;
+function sayYes(e){
+  if (e) {
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.cancelable && e.type === 'touchend') {
+      try { e.preventDefault(); } catch(err) {}
+    }
+  }
+  const now = Date.now();
+  if (now - lastYesTime < 800) return;
+  lastYesTime = now;
+
+  const ans = document.getElementById('answer');
+  if (ans) ans.innerHTML = "You just made my heart the happiest! ❤️🥹 I love you, Munu!";
   musicPlayer.play(46);
   startAfterYesExperience();
 }
@@ -1509,6 +1522,7 @@ function revealFinalSkySection() {
 }
 
 function resetProposalExperience() {
+  lastYesTime = 0;
   musicPlayer.stop();
   const container = document.getElementById('after-yes-experience');
   if (container) {
@@ -1652,12 +1666,15 @@ function closeCelebration() {
 }
 
 function moveThinkButton(e) {
-  if (e) {
+  if (e && e.target && e.target.closest && (e.target.closest('.yes') || e.target.closest('#yesBtn'))) {
+    return;
+  }
+  const btn = document.getElementById('thinkBtn');
+  if (e && btn && (e.target === btn || btn.contains(e.target))) {
     if (e.cancelable) e.preventDefault();
     if (e.stopPropagation) e.stopPropagation();
   }
   const card = document.querySelector('.question');
-  const btn = document.getElementById('thinkBtn');
   const yesBtn = document.querySelector('.yes');
   const bigText = document.querySelector('.question .big');
   const pText = document.querySelector('.question p');
@@ -1787,6 +1804,10 @@ function checkDistanceAndMove(e) {
   const thinkBtn = document.getElementById('thinkBtn');
   if (!thinkBtn) return;
   
+  if (e && e.target && e.target.closest && (e.target.closest('.yes') || e.target.closest('#yesBtn') || e.target.closest('#after-yes-experience'))) {
+    return;
+  }
+  
   let clientX, clientY;
   const isTouch = (e.touches && e.touches.length > 0) || (e.changedTouches && e.changedTouches.length > 0) || (e.type && e.type.startsWith('touch'));
   if (e.touches && e.touches.length > 0) {
@@ -1802,12 +1823,27 @@ function checkDistanceAndMove(e) {
   
   if (clientX === undefined || clientY === undefined) return;
 
+  // If touch/pointer is on or close to YES button, never evade or interfere
+  const yesBtn = document.getElementById('yesBtn') || document.querySelector('.yes');
+  if (yesBtn) {
+    const yRect = yesBtn.getBoundingClientRect();
+    const pad = 20;
+    if (
+      clientX >= yRect.left - pad &&
+      clientX <= yRect.right + pad &&
+      clientY >= yRect.top - pad &&
+      clientY <= yRect.bottom + pad
+    ) {
+      return;
+    }
+  }
+
   const btnRect = thinkBtn.getBoundingClientRect();
   const btnCenterX = btnRect.left + btnRect.width / 2;
   const btnCenterY = btnRect.top + btnRect.height / 2;
 
   const distance = Math.hypot(clientX - btnCenterX, clientY - btnCenterY);
-  const threshold = isTouch ? 120 : 75;
+  const threshold = isTouch ? 70 : 65;
 
   if (distance < threshold) {
     moveThinkButton(e);
@@ -1820,8 +1856,32 @@ if (thinkBtn) {
     thinkBtn.addEventListener(evt, moveThinkButton, { passive: false });
   });
   ['mousemove', 'touchmove', 'touchstart', 'pointerdown', 'pointermove'].forEach(evt => {
-    document.addEventListener(evt, checkDistanceAndMove, { passive: false });
+    document.addEventListener(evt, checkDistanceAndMove, { passive: true });
   });
+}
+
+// Ensure instant single-tap responsiveness on all mobile screens for the YES button
+const yesBtnEl = document.getElementById('yesBtn') || document.querySelector('.yes');
+if (yesBtnEl) {
+  let touchStartX = 0, touchStartY = 0;
+  yesBtnEl.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  yesBtnEl.addEventListener('touchend', (e) => {
+    let deltaX = 0, deltaY = 0;
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      deltaX = Math.abs(e.changedTouches[0].clientX - touchStartX);
+      deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY);
+    }
+    // Only trigger if it was an intentional tap and not a scroll gesture
+    if (deltaX < 15 && deltaY < 15) {
+      sayYes(e);
+    }
+  }, { passive: false });
 }
 
 function burst(){
