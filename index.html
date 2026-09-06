@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Mrigangka ❤️ Munu</title>
+<title>Anku ❤️ Munu</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap');
 *{box-sizing:border-box}
@@ -417,8 +417,8 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 }
 .photo-box {
   width: 100%;
-  height: 220px;
-  border-radius: 12px;
+  height: 280px;
+  border-radius: 14px;
   background: linear-gradient(135deg, #fef9c3 0%, #fde047 100%);
   display: flex;
   flex-direction: column;
@@ -429,6 +429,18 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   font-size: 15px;
   position: relative;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(217, 119, 6, 0.15);
+}
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px;
+  transition: transform 0.4s ease;
+}
+.photo-card:hover .photo-box img {
+  transform: scale(1.04);
 }
 .photo-caption {
   font-family: 'Great Vibes', cursive;
@@ -799,7 +811,7 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 <body>
 <div id="hearts-bg"></div>
 <nav>
-<div class="logo">♥ Mrigangka & Munu</div>
+<div class="logo">♥ Anku & Munu</div>
 <div><a href="#home">Home</a><a href="#story">Our Story</a><a href="#memories">Memories</a><a href="#question">Question</a></div>
 </nav>
 
@@ -919,27 +931,19 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
       <div class="chapter-title">The Memories</div>
       <div class="chapter-body">Moments captured in time that make me smile every single day.</div>
       
-      <!-- PHOTO GALLERY PLACEHOLDERS (REPLACE WITH YOUR REAL PHOTOS LATER) -->
+      <!-- PHOTO GALLERY -->
       <div class="photo-grid">
         <div class="photo-card">
-          <!-- Photo 1: Replace src with your photo URL/path -->
-          <div class="photo-box">PHOTO_1</div>
+          <div class="photo-box">
+            <img src="WhatsApp%20Image%202026-09-05%20at%2011.49.08%20PM%20(1).jpeg" alt="Our first smile" style="object-position: center 20%;">
+          </div>
           <div class="photo-caption">Our first smile ✨</div>
         </div>
         <div class="photo-card">
-          <!-- Photo 2: Replace src with your photo URL/path -->
-          <div class="photo-box">PHOTO_2</div>
+          <div class="photo-box">
+            <img src="WhatsApp%20Image%202026-09-05%20at%2011.49.08%20PM.jpeg" alt="Unforgettable day" style="object-position: center 25%;">
+          </div>
           <div class="photo-caption">Unforgettable day 🌸</div>
-        </div>
-        <div class="photo-card">
-          <!-- Photo 3: Replace src with your photo URL/path -->
-          <div class="photo-box">PHOTO_3</div>
-          <div class="photo-caption">Laughing together 💕</div>
-        </div>
-        <div class="photo-card">
-          <!-- Photo 4: Replace src with your photo URL/path -->
-          <div class="photo-box">PHOTO_4</div>
-          <div class="photo-caption">My favorite picture 📸</div>
         </div>
       </div>
     </div>
@@ -1395,7 +1399,7 @@ function revealFinalSkySection() {
     "Remember that somewhere in this world, there is someone who chose you, and will keep choosing you.",
     "You are loved. ❤️",
     "Forever & Always,",
-    "Mijangang ❤️ Munu"
+    "Anku ❤️ Munu"
   ];
 
   const lineBox = skyCard.querySelector('#finalLines');
@@ -1465,7 +1469,7 @@ function launchCelebration() {
       <p>You just made my heart the happiest! 🥹❤️<br>
       I promise to love you, cherish you, and stand beside you — today, tomorrow, and always. 💌</p>
       <p class="celebration-names">
-        Mrigangka ❤️ Munu<br>
+        Anku ❤️ Munu<br>
         <span class="celebration-sub">Forever & Always 🥰</span>
       </p>
     </div>
