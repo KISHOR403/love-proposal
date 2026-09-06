@@ -998,31 +998,72 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   <div class="count-num" id="countdownDigit">3</div>
 </div>
 
+<audio id="romanticSong" preload="auto" loop src="Kaafi%20Hai%20Na.mp3"></audio>
+
 <script>
 // ===== MUSIC PLAYER ENGINE =====
 class RomanticMusicPlayer {
   constructor() {
+    this.audio = null;
     this.ctx = null;
     this.isPlaying = false;
     this.timer = null;
     this.noteIndex = 0;
   }
-  init() {
-    if (!this.ctx) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      this.ctx = new AudioCtx();
+  getAudio() {
+    if (!this.audio) {
+      this.audio = document.getElementById('romanticSong');
     }
+    return this.audio;
   }
   toggle() {
     if (this.isPlaying) {
       this.stop();
     } else {
-      this.play();
+      const audio = this.getAudio();
+      if (audio && audio.currentTime > 0) {
+        this.play();
+      } else {
+        this.play(46);
+      }
     }
   }
-  play() {
-    this.init();
-    if (this.ctx.state === 'suspended') {
+  play(startTime = null) {
+    const audio = this.getAudio();
+    if (audio) {
+      if (startTime !== null && !isNaN(startTime)) {
+        try {
+          audio.currentTime = startTime;
+        } catch(e) {}
+      }
+      const p = audio.play();
+      if (p !== undefined) {
+        p.then(() => {
+          this.isPlaying = true;
+          const musicBtn = document.getElementById('musicToggleBtn');
+          if (musicBtn) musicBtn.classList.add('playing');
+        }).catch(err => {
+          console.log("Audio file play blocked or error, falling back to synth:", err);
+          this.playSynth();
+        });
+      }
+      return;
+    }
+    this.playSynth();
+  }
+  stop() {
+    const audio = this.getAudio();
+    if (audio) {
+      audio.pause();
+    }
+    this.stopSynth();
+    this.isPlaying = false;
+    const musicBtn = document.getElementById('musicToggleBtn');
+    if (musicBtn) musicBtn.classList.remove('playing');
+  }
+  playSynth() {
+    this.initSynth();
+    if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume();
     }
     this.isPlaying = true;
@@ -1030,11 +1071,14 @@ class RomanticMusicPlayer {
     const musicBtn = document.getElementById('musicToggleBtn');
     if (musicBtn) musicBtn.classList.add('playing');
   }
-  stop() {
-    this.isPlaying = false;
+  stopSynth() {
     if (this.timer) clearTimeout(this.timer);
-    const musicBtn = document.getElementById('musicToggleBtn');
-    if (musicBtn) musicBtn.classList.remove('playing');
+  }
+  initSynth() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioCtx();
+    }
   }
   playNote(freq, duration = 2.5) {
     if (!this.ctx || !this.isPlaying) return;
@@ -1074,7 +1118,7 @@ const musicPlayer = new RomanticMusicPlayer();
 // ===== AFTER YES EMOTIONAL EXPERIENCE LOGIC =====
 function sayYes(){
   document.getElementById('answer').innerHTML = "You just made my heart the happiest! ❤️🥹 I love you, Munu!";
-  musicPlayer.play();
+  musicPlayer.play(46);
   startAfterYesExperience();
 }
 
@@ -1433,6 +1477,7 @@ function revealFinalSkySection() {
 }
 
 function resetProposalExperience() {
+  musicPlayer.stop();
   const container = document.getElementById('after-yes-experience');
   if (container) {
     container.classList.remove('active');
