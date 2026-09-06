@@ -52,6 +52,59 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
   color: #f59e0b;
   filter: drop-shadow(0 0 6px rgba(245,158,11,0.5));
 }
+.sunflower-particle {
+  animation: floatSunflower linear infinite !important;
+  filter: drop-shadow(0 2px 8px rgba(234, 179, 8, 0.45));
+}
+@keyframes floatSunflower {
+  0%   { transform: translateY(0) rotate(0deg) scale(0.7); opacity: 0; }
+  12%  { opacity: 0.85; }
+  50%  { transform: translateY(-55vh) rotate(180deg) scale(1.08); }
+  85%  { opacity: 0.7; }
+  100% { transform: translateY(-115vh) rotate(360deg) scale(0.85); opacity: 0; }
+}
+.ambient-sunflower {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.32;
+  filter: drop-shadow(0 4px 15px rgba(202, 138, 4, 0.25));
+  animation: gentleSway 7s ease-in-out infinite alternate;
+  user-select: none;
+  font-size: clamp(45px, 6vw, 75px);
+}
+.ambient-sunflower.top-left {
+  top: 75px;
+  left: 20px;
+  transform-origin: top left;
+  animation-duration: 8s;
+}
+.ambient-sunflower.top-right {
+  top: 130px;
+  right: 25px;
+  transform-origin: top right;
+  animation-duration: 9.5s;
+  animation-delay: -3s;
+}
+.ambient-sunflower.bottom-left {
+  bottom: 60px;
+  left: 25px;
+  transform-origin: bottom left;
+  animation-duration: 8.5s;
+  animation-delay: -4s;
+}
+.ambient-sunflower.bottom-right {
+  bottom: 75px;
+  right: 20px;
+  transform-origin: bottom right;
+  animation-duration: 7.5s;
+  animation-delay: -1.5s;
+}
+@keyframes gentleSway {
+  0% { transform: rotate(-8deg) scale(0.96); }
+  50% { transform: rotate(6deg) scale(1.04); }
+  100% { transform: rotate(-5deg) scale(1); }
+}
 @keyframes floatHeart {
   0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
   15%  { opacity: 0.75; }
@@ -809,7 +862,12 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 </style>
 </head>
 <body>
-<div id="hearts-bg"></div>
+<div id="hearts-bg">
+  <div class="ambient-sunflower top-left">🌻</div>
+  <div class="ambient-sunflower top-right">🌻</div>
+  <div class="ambient-sunflower bottom-left">🌻</div>
+  <div class="ambient-sunflower bottom-right">🌻</div>
+</div>
 <nav>
 <div class="logo">♥ Anku & Munu</div>
 <div><a href="#home">Home</a><a href="#story">Our Story</a><a href="#memories">Memories</a><a href="#question">Question</a></div>
@@ -1527,7 +1585,7 @@ function launchCelebration() {
 }
 
 function floatGentleHearts(container) {
-  const hearts = ['💕', '💖', '💗', '🌸', '✨'];
+  const hearts = ['🌻', '💕', '🌻', '💖', '💗', '🌸', '✨', '🌻'];
   for (let i = 0; i < 12; i++) {
     const el = document.createElement('div');
     el.className = 'cute-emoji-particle';
@@ -1793,8 +1851,8 @@ if (thinkBtn) {
 }
 
 function burst(){
- for(let i=0;i<24;i++){
-   let h=document.createElement('div'); h.className='heart'; h.innerHTML=['❤️','💕','💖','💗','✨'][Math.floor(Math.random()*5)];
+ for(let i=0;i<26;i++){
+   let h=document.createElement('div'); h.className='heart'; h.innerHTML=['🌻','❤️','💕','🌻','💖','✨'][Math.floor(Math.random()*6)];
    h.style.left=Math.random()*100+'vw'; h.style.animationDuration=(3+Math.random()*3)+'s';
    document.body.appendChild(h); setTimeout(()=>h.remove(),6500);
  }
@@ -1805,19 +1863,21 @@ function initHeartsBackground() {
   const container = document.getElementById('hearts-bg');
   if (!container) return;
 
-  const symbols = ['❤️', '💕', '💖', '💗', '💓', '💞', '💝', '🌹', '✨', '🌸', '💘'];
+  const symbols = ['🌻', '🌻', '❤️', '💕', '🌻', '💖', '💗', '✨', '🌻', '🌸', '🌹', '💛', '🌻'];
   let count = 0;
-  const maxCount = 28;
+  const maxCount = 32;
 
   function spawnHeart() {
     if (count >= maxCount) return;
     const heart = document.createElement('div');
-    heart.className = 'heart-particle';
-    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+    const isSunflower = (symbol === '🌻');
+    heart.className = isSunflower ? 'heart-particle sunflower-particle' : 'heart-particle';
+    heart.textContent = symbol;
 
-    const size = Math.random() * 1.2 + 0.8;
+    const size = isSunflower ? (Math.random() * 1.3 + 1.2) : (Math.random() * 1.1 + 0.8);
     const left = Math.random() * 100;
-    const duration = Math.random() * 6 + 6;
+    const duration = isSunflower ? (Math.random() * 7 + 7) : (Math.random() * 6 + 6);
     const delay = Math.random() * 2;
 
     heart.style.left = left + 'vw';
@@ -1834,11 +1894,11 @@ function initHeartsBackground() {
     }, (duration + delay) * 1000);
   }
 
-  for (let i = 0; i < 16; i++) {
-    setTimeout(spawnHeart, i * 350);
+  for (let i = 0; i < 18; i++) {
+    setTimeout(spawnHeart, i * 300);
   }
 
-  setInterval(spawnHeart, 700);
+  setInterval(spawnHeart, 600);
 }
 
 if (document.readyState === 'loading') {
