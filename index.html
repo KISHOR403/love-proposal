@@ -310,71 +310,116 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
 /* ===== SECTION 1: OPEN MY HEART / ENVELOPE ===== */
 .envelope-screen {
   background: linear-gradient(135deg, #fffdf0 0%, #fef9c3 100%);
+  padding: 40px 20px 60px 20px;
 }
 .envelope-title {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(34px, 7vw, 56px);
   color: #92400e;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 10px rgba(180, 83, 9, 0.12);
 }
 .envelope-container {
-  width: min(340px, 85vw);
+  width: min(350px, 88vw);
   height: 220px;
   position: relative;
-  margin: 20px auto 40px auto;
-  perspective: 1000px;
+  margin: 140px auto 45px auto;
+  perspective: 1200px;
 }
 .envelope-body {
   width: 100%;
   height: 100%;
-  background: #f59e0b;
+  background: linear-gradient(145deg, #d97706, #b45309);
   border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(180, 83, 9, 0.25);
+  box-shadow: 0 18px 45px rgba(180, 83, 9, 0.28);
   position: relative;
   cursor: pointer;
+  transform-style: preserve-3d;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.envelope-body:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 50px rgba(180, 83, 9, 0.35);
 }
 .envelope-top-flap {
   position: absolute;
-  top: 0; left: 0;
-  width: 0; height: 0;
-  border-left: min(170px, 42.5vw) solid transparent;
-  border-right: min(170px, 42.5vw) solid transparent;
-  border-top: 115px solid #d97706;
-  transform-origin: top;
-  transition: transform 0.6s ease;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 118px;
+  background: linear-gradient(180deg, #d97706 0%, #b45309 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.05s ease 0.35s;
+  z-index: 5;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
 }
 .envelope-body.open .envelope-top-flap {
   transform: rotateX(180deg);
   z-index: 1;
 }
+.envelope-seal {
+  position: absolute;
+  top: 98px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  z-index: 6;
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25));
+}
+.envelope-body.open .envelope-seal {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.3);
+}
 .envelope-letter-card {
   position: absolute;
-  bottom: 12px;
-  left: 6%;
-  width: 88%;
-  background: #fffdf5;
+  bottom: 14px;
+  left: 5%;
+  width: 90%;
+  background: #ffffff;
   border-radius: 12px;
-  padding: 22px 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 24px 20px;
+  box-shadow: 0 8px 25px rgba(180, 83, 9, 0.18);
+  border: 1px solid #fde68a;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s, box-shadow 0.6s ease;
   z-index: 2;
   text-align: center;
   box-sizing: border-box;
+  transform: translateY(0) scale(0.96);
+  opacity: 0.95;
 }
 .envelope-body.open .envelope-letter-card {
-  transform: translateY(-90px) scale(1.05);
+  transform: translateY(-118px) scale(1.03);
+  box-shadow: 0 24px 50px rgba(180, 83, 9, 0.32);
   z-index: 4;
+  opacity: 1;
+}
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  clip-path: polygon(0 35%, 50% 68%, 100% 35%, 100% 100%, 0 100%);
+  border-radius: 0 0 14px 14px;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 -3px 8px rgba(0,0,0,0.08));
 }
 .letter-text {
   font-family: 'Outfit', sans-serif;
-  font-size: 16px;
+  font-size: clamp(14px, 4vw, 16px);
   line-height: 1.7;
   color: #582f0e;
 }
 .letter-salutation {
   font-family: 'Great Vibes', cursive;
-  font-size: 28px;
+  font-size: clamp(26px, 6vw, 32px);
   color: #92400e;
   margin-bottom: 10px;
 }
@@ -923,6 +968,8 @@ footer{position:relative;z-index:2;text-align:center;padding:50px 20px;backgroun
             So I decided to put them here.
           </div>
         </div>
+        <div class="envelope-pocket"></div>
+        <div class="envelope-seal">💌</div>
       </div>
     </div>
 
@@ -1185,6 +1232,22 @@ function goToSection(sectionId) {
     const parentContainer = document.getElementById('after-yes-experience');
     if (parentContainer) parentContainer.scrollTop = 0;
   }
+
+  // Smoothly and automatically open the letter envelope when entering this screen
+  if (sectionId === 'exp-envelope-screen') {
+    const env = document.getElementById('letterEnvelope');
+    const readBtn = document.getElementById('readHeartBtn');
+    if (env) {
+      env.classList.remove('open');
+      if (readBtn) {
+        readBtn.style.opacity = '0';
+        readBtn.style.pointerEvents = 'none';
+      }
+      setTimeout(() => {
+        openEnvelope();
+      }, 500);
+    }
+  }
 }
 
 function openEnvelope() {
@@ -1196,7 +1259,7 @@ function openEnvelope() {
       setTimeout(() => {
         readBtn.style.opacity = '1';
         readBtn.style.pointerEvents = 'auto';
-      }, 1000);
+      }, 1200);
     }
   }
 }
